@@ -1,0 +1,306 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Software Engineer & Full-Stack Developer | Portfolio{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-pulse"></span> Available for New Opportunities
+            </div>
+            <h1 class="hero-title">
+                Hi, I'm <span class="gradient-text">Jyotsana Runthla</span>.<br>
+                Big Data Analytics & Web Solutions.
+            </h1>
+            <p class="hero-subtitle">
+                B.Tech Big Data Analytics Student at SRM University, Chennai. 
+                Passionate about Data Science, Machine Learning, Python, and Django web application development.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fa-solid fa-rocket"></i> Explore Work
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fa-regular fa-envelope"></i> Contact Me
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="code-header">
+                    <div class="code-dot dot-red"></div>
+                    <div class="code-dot dot-yellow"></div>
+                    <div class="code-dot dot-green"></div>
+                    <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem;">developer_profile.py</span>
+                </div>
+                <div class="code-content">
+                    <span class="code-kw">class</span> <span class="code-fn">Developer</span>:<br>
+                    &nbsp;&nbsp;<span class="code-kw">def</span> <span class="code-fn">__init__</span>(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-str">"Jyotsana Runthla"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;self.education = <span class="code-str">"SRM University, Chennai"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;self.degree = <span class="code-str">"B.Tech Big Data Analytics"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;self.stack = [<span class="code-str">"Python"</span>, <span class="code-str">"Django"</span>, <span class="code-str">"Big Data"</span>, <span class="code-str">"SQL"</span>]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;self.database_status = <span class="code-str">"Connected 🟢"</span><br><br>
+                    &nbsp;&nbsp;<span class="code-kw">def</span> <span class="code-fn">build_future</span>(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-kw">return</span> <span class="code-str">"Unlocking insights with Big Data & Web Tech ✨"</span><br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- DB Statistics Bar -->
+<div class="container">
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">{{ stats.projects_count }}</div>
+            <div class="stat-label">Projects in Database</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">{{ stats.skills_count }}</div>
+            <div class="stat-label">Technical Skills</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">{{ stats.messages_count }}</div>
+            <div class="stat-label">Messages Received</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Django ORM Powered</div>
+        </div>
+    </div>
+</div>
+
+<!-- About Section -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-title-wrap">
+            <span class="section-tag">About Me</span>
+            <h2 class="section-title">Driven by Clean Code & Systems Design</h2>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 2.5rem; backdrop-filter: blur(16px);">
+            <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1.25rem; line-height: 1.8;">
+                Welcome to my Django showcase portfolio! I am a developer specializing in modern web architecture, database design, and clean backend logic. 
+                This web application demonstrates real-time dynamic querying from a SQLite database via Django's Object-Relational Mapper (ORM), 
+                form validation, and custom admin management.
+            </p>
+            <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8;">
+                Whether building REST APIs, managing database schemas, or polishing user interfaces, I focus on security, readability, and performance.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Skills Section -->
+<section class="section" id="skills">
+    <div class="container">
+        <div class="section-title-wrap">
+            <span class="section-tag">Technical Mastery</span>
+            <h2 class="section-title">Skills & Technologies</h2>
+        </div>
+
+        <div class="skills-grid">
+            {% for cat_name, skill_list in skills_by_category.items %}
+            <div class="skill-category-card">
+                <h3 class="category-title">
+                    {% if cat_name == 'Frontend' %}<i class="fa-solid fa-laptop-code"></i>
+                    {% elif cat_name == 'Backend' %}<i class="fa-solid fa-server"></i>
+                    {% elif cat_name == 'Database' %}<i class="fa-solid fa-database"></i>
+                    {% else %}<i class="fa-solid fa-gears"></i>{% endif %}
+                    {{ cat_name }}
+                </h3>
+                {% for skill in skill_list %}
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>{{ skill.name }}</span>
+                        <span>{{ skill.proficiency }}%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" data-width="{{ skill.proficiency }}" style="width: 0%;"></div>
+                    </div>
+                </div>
+                {% empty %}
+                <p style="color: var(--text-muted); font-size: 0.85rem;">No skills populated in this category.</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Projects Showcase Section -->
+<section class="section" id="projects">
+    <div class="container">
+        <div class="section-title-wrap">
+            <span class="section-tag">Portfolio Showcase</span>
+            <h2 class="section-title">Featured Projects</h2>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="Web">Web Dev</button>
+            <button class="filter-btn" data-filter="AI">AI & Machine Learning</button>
+            <button class="filter-btn" data-filter="Mobile">Mobile</button>
+            <button class="filter-btn" data-filter="DevOps">Cloud & DevOps</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card" data-category="{{ project.category }}">
+                <img src="{{ project.image_url }}" alt="{{ project.title }}" class="project-thumb" loading="lazy">
+                <div class="project-body">
+                    <span class="project-category-badge">{{ project.get_category_display }}</span>
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-summary">{{ project.summary }}</p>
+                    
+                    <div class="tech-tags">
+                        {% for tech in project.tech_list %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="project-links">
+                        <a href="{% url 'portfolio:project_detail' project.slug %}" class="project-link-btn btn-demo">
+                            <i class="fa-solid fa-circle-info"></i> Details
+                        </a>
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" target="_blank" class="project-link-btn btn-github">
+                            <i class="fa-brands fa-github"></i> Code
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p style="text-align: center; color: var(--text-muted);">No projects found in database.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section class="section" id="experience">
+    <div class="container">
+        <div class="section-title-wrap">
+            <span class="section-tag">Academic Background</span>
+            <h2 class="section-title">Education</h2>
+        </div>
+
+
+        <div class="timeline">
+            {% for item in work_experiences %}
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-role">{{ item.title }}</div>
+                    <div class="timeline-org"><i class="fa-solid fa-briefcase"></i> {{ item.organization }}</div>
+                    <div class="timeline-period">{{ item.start_date }} - {{ item.end_date }}</div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">{{ item.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for item in education %}
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: var(--accent-secondary); box-shadow: 0 0 10px var(--accent-secondary);"></div>
+                <div class="timeline-card">
+                    <div class="timeline-role">{{ item.title }}</div>
+                    <div class="timeline-org" style="color: var(--accent-secondary);"><i class="fa-solid fa-graduation-cap"></i> {{ item.organization }}</div>
+                    <div class="timeline-period">{{ item.start_date }} - {{ item.end_date }}</div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">{{ item.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Contact Form Section -->
+<section class="section" id="contact">
+    <div class="container">
+        <div class="section-title-wrap">
+            <span class="section-tag">Get In Touch</span>
+            <h2 class="section-title">Let's Work Together</h2>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info-card">
+                <h3>Send Me a Message</h3>
+                <p>Have a question, feedback, or project opportunity? Submit the form and the message will be stored directly into the SQLite database!</p>
+                
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-muted);">EMAIL</div>
+                        <div style="font-weight: 600;">jyotsana.runthla@srmist.edu.in</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-muted);">LOCATION</div>
+                        <div style="font-weight: 600;">SRM University, Chennai, Tamil Nadu</div>
+                    </div>
+                </div>
+
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-database"></i></div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem; color: var(--text-muted);">DATABASE BACKEND</div>
+                        <div style="font-weight: 600;">Django ORM / SQLite3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form handling Django CSRF & ModelForm -->
+            <form method="POST" action="{% url 'portfolio:index' %}#contact">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label style="display:block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); font-weight:600;">FULL NAME</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                    <span style="color: #f87171; font-size: 0.8rem;">{{ form.name.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label style="display:block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); font-weight:600;">EMAIL ADDRESS</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    <span style="color: #f87171; font-size: 0.8rem;">{{ form.email.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label style="display:block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); font-weight:600;">SUBJECT</label>
+                    {{ form.subject }}
+                    {% if form.subject.errors %}
+                    <span style="color: #f87171; font-size: 0.8rem;">{{ form.subject.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label style="display:block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); font-weight:600;">YOUR MESSAGE</label>
+                    {{ form.message }}
+                    {% if form.message.errors %}
+                    <span style="color: #f87171; font-size: 0.8rem;">{{ form.message.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    <i class="fa-solid fa-paper-plane"></i> Send Message to DB
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

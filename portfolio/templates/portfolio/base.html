@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Developer Portfolio showcasing software projects, skill proficiency, and work history.">
+    <title>{% block title %}Developer Portfolio | Built with Django{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Background Ambient Glow Blobs -->
+    <div class="bg-glow-container">
+        <div class="glow-blob glow-1"></div>
+        <div class="glow-blob glow-2"></div>
+        <div class="glow-blob glow-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <a href="{% url 'portfolio:index' %}" class="nav-brand">
+            <i class="fa-solid fa-code"></i> Developer.py
+        </a>
+        <ul class="nav-links">
+            <li><a href="{% url 'portfolio:index' %}#about" class="nav-link">About</a></li>
+            <li><a href="{% url 'portfolio:index' %}#skills" class="nav-link">Skills</a></li>
+            <li><a href="{% url 'portfolio:index' %}#projects" class="nav-link">Projects</a></li>
+            <li><a href="{% url 'portfolio:index' %}#experience" class="nav-link">Education</a></li>
+
+            <li><a href="{% url 'portfolio:index' %}#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="{% url 'portfolio:index' %}#contact" class="nav-btn">Get In Touch</a>
+    </nav>
+
+    <!-- Django Flash Messages Notification Container -->
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+            <span>{{ message }}</span>
+            <i class="fa-solid fa-xmark" style="cursor:pointer;" onclick="this.parentElement.remove()"></i>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Page Content Block -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-socials">
+                <a href="https://github.com" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="{% url 'admin:index' %}" target="_blank" class="social-icon" title="Django Admin Panel"><i class="fa-solid fa-user-shield"></i></a>
+            </div>
+            <p>&copy; 2026 <strong>Jyotsana Runthla</strong> | SRM University, Chennai | B.Tech Big Data Analytics. Powered by <strong>Django & SQLite3</strong>.</p>
+        </div>
+    </footer>
+
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
