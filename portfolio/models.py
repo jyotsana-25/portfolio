@@ -55,17 +55,16 @@ class Project(models.Model):
 
 class Skill(models.Model):
     CATEGORY_CHOICES = [
-        ('Frontend', 'Frontend Development'),
-        ('Backend', 'Backend Development'),
-        ('Database', 'Database & ORM'),
-        ('Tools', 'Tools, Cloud & DevOps'),
+        ('Programming Languages', 'Programming Languages'),
+        ('Frameworks & Web', 'Frameworks & Web'),
     ]
 
     name = models.CharField(max_length=100)
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Backend')
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Programming Languages')
     proficiency = models.IntegerField(default=85, help_text="Proficiency percentage (1 to 100)")
     icon = models.CharField(max_length=50, default="code", help_text="Lucide or FontAwesome icon slug (e.g. python, database, layout, terminal)")
     order = models.IntegerField(default=0)
+
 
     class Meta:
         ordering = ['category', 'order', 'name']

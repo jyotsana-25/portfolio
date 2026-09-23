@@ -108,12 +108,12 @@
             {% for cat_name, skill_list in skills_by_category.items %}
             <div class="skill-category-card">
                 <h3 class="category-title">
-                    {% if cat_name == 'Frontend' %}<i class="fa-solid fa-laptop-code"></i>
-                    {% elif cat_name == 'Backend' %}<i class="fa-solid fa-server"></i>
-                    {% elif cat_name == 'Database' %}<i class="fa-solid fa-database"></i>
-                    {% else %}<i class="fa-solid fa-gears"></i>{% endif %}
+                    {% if 'Language' in cat_name %}<i class="fa-solid fa-code"></i>
+                    {% elif 'Framework' in cat_name %}<i class="fa-solid fa-cubes"></i>
+                    {% else %}<i class="fa-solid fa-laptop-code"></i>{% endif %}
                     {{ cat_name }}
                 </h3>
+
                 {% for skill in skill_list %}
                 <div class="skill-item">
                     <div class="skill-info">

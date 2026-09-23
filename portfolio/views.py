@@ -27,12 +27,9 @@ def index(request):
     featured_projects = Project.objects.filter(featured=True)
     
     # Categorize skills for clean layout rendering
-    skills_by_category = {
-        'Frontend': Skill.objects.filter(category='Frontend'),
-        'Backend': Skill.objects.filter(category='Backend'),
-        'Database': Skill.objects.filter(category='Database'),
-        'Tools': Skill.objects.filter(category='Tools'),
-    }
+    categories = Skill.objects.values_list('category', flat=True).distinct()
+    skills_by_category = {cat: Skill.objects.filter(category=cat) for cat in categories if Skill.objects.filter(category=cat).exists()}
+
 
     work_experiences = Experience.objects.filter(type='work')
     education = Experience.objects.filter(type='education')

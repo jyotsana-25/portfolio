@@ -72,29 +72,21 @@ def seed_database():
         Project.objects.create(**p)
     print(f"  [OK] Created {len(projects_data)} Projects.")
 
-    # 3. Populate Skills
+    # 3. Populate Skills (C, C++, Java, Python, Django)
     Skill.objects.all().delete()
     skills_data = [
-        {'name': 'Python 3', 'category': 'Backend', 'proficiency': 95, 'order': 1},
-        {'name': 'Django & Django ORM', 'category': 'Backend', 'proficiency': 92, 'order': 2},
-        {'name': 'REST API Architecture', 'category': 'Backend', 'proficiency': 88, 'order': 3},
+        {'name': 'Python', 'category': 'Programming Languages', 'proficiency': 95, 'order': 1},
+        {'name': 'C++', 'category': 'Programming Languages', 'proficiency': 88, 'order': 2},
+        {'name': 'Java', 'category': 'Programming Languages', 'proficiency': 85, 'order': 3},
+        {'name': 'C', 'category': 'Programming Languages', 'proficiency': 80, 'order': 4},
         
-        {'name': 'PySpark & Big Data Ecosystem', 'category': 'Database', 'proficiency': 90, 'order': 1},
-        {'name': 'SQLite3, MySQL & SQL Queries', 'category': 'Database', 'proficiency': 92, 'order': 2},
-        {'name': 'Pandas, NumPy & Data Wrangling', 'category': 'Database', 'proficiency': 94, 'order': 3},
-        
-        {'name': 'HTML5 & Vanilla CSS3', 'category': 'Frontend', 'proficiency': 90, 'order': 1},
-        {'name': 'JavaScript (ES6+)', 'category': 'Frontend', 'proficiency': 85, 'order': 2},
-        {'name': 'Responsive Glassmorphism UI', 'category': 'Frontend', 'proficiency': 88, 'order': 3},
-
-        {'name': 'Git & GitHub Version Control', 'category': 'Tools', 'proficiency': 90, 'order': 1},
-        {'name': 'Data Visualization (Matplotlib / Chart.js)', 'category': 'Tools', 'proficiency': 88, 'order': 2},
-        {'name': 'Linux Shell & Command Line', 'category': 'Tools', 'proficiency': 85, 'order': 3},
+        {'name': 'Django', 'category': 'Frameworks & Web', 'proficiency': 92, 'order': 1},
     ]
 
     for s in skills_data:
         Skill.objects.create(**s)
     print(f"  [OK] Created {len(skills_data)} Skills.")
+
 
     # 4. Populate Experience & Education (Only SRM University B.Tech 2025 - Present)
     Experience.objects.all().delete()
